@@ -1,0 +1,108 @@
+.row {
+    justify-content: space-between;
+}
+
+.col {
+    padding: 0 5px;
+}
+
+hr {
+    border: 0;
+}
+
+.card {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.card-type {
+    color: #767676;
+}
+
+.header-font {
+    font-weight: 400;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid  #ced4da;
+}
+
+.card-title {
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    line-height: 1.375em !important;
+    color: rgb(72, 72, 72) !important;
+    margin: 0px !important;
+}
+
+.card-text {
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.28571em !important;
+    color: #5a5959;
+    margin: 0px !important;
+}
+
+.card button {
+    margin: 5px 0;
+}
+
+.btn-outline-primary:hover {
+    color: #424040;
+    background-color: #F2F2F2;
+}
+
+.list-box {
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.avatar-text{
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.title-text{
+    color: cornflowerblue;
+    margin: 0 !important;
+}
+
+.bold-font {
+    font-weight: 500;
+}
+
+.vote {
+    display: inline-block;
+    overflow: hidden;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+    background: url('http://i.stack.imgur.com/iqN2k.png');
+    background-position: 0 -25px;
+} 
+  
+  
+  .vote:hover {
+    background-position: 0 2px;
+    background-color: yellow;
+}
+
+  .pro-image {
+      width: 15% !important;
+      border: 1px solid #6c757d;
+      
+}
+
+.description {
+    padding-top: 30px;
+}
