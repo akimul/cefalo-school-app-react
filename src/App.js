@@ -10,11 +10,13 @@ class App extends Component {
 
   state = {
     products: [],
+    filteredProducts: []
   }
 
   componentDidMount() {
-    this.onSearch();
+    this.getProducts();
   }
+
 
   render(){
     return (
@@ -22,18 +24,30 @@ class App extends Component {
         <Header/>
         <Search onSearchChange={term => this.onSearch(term)}/>
         <hr className="my-4"/>
-        <ProductList products={this.state.products}/>
+        <ProductList products={this.state.filteredProducts}/>
       </div>
     )
   }
 
 
-  onSearch(searchTerm) {
+  getProducts() {
     services.getProducts().then(
       products=>{
-        this.setState({products});
+        products.sort((a, b) => b.votes_count - a.votes_count);
+        this.setState({products, filteredProducts: products});
       }
     ).catch(e => console.log(e))
+  }
+
+  onSearch(searchterm){
+    let filteredProducts = this.state.products
+    filteredProducts = filteredProducts.filter((product) => {
+      return product.name.toLowerCase().includes(searchterm.toLowerCase()) || 
+      product.tagline.toLowerCase().includes(searchterm.toLowerCase())
+    })
+    this.setState({
+      filteredProducts
+    })
   }
 }
 
