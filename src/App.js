@@ -54,7 +54,7 @@ class App extends Component {
   {
     product.votes_count = product.votes_count + 1
     const index = this.state.filteredProducts.findIndex(item => item.slug === product.slug),
-    products = [...this.state.products] // important to create a copy, otherwise you'll modify state outside of setState call
+    products = [...this.state.products] 
     products[index] = product;
     products.sort((a, b) => b.votes_count - a.votes_count);
     this.setState({products, filteredProducts: products});
