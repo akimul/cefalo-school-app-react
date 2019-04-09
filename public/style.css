@@ -106,3 +106,12 @@ hr {
 .description {
     padding-top: 30px;
 }
+
+.not-found {
+    width: 100%;
+    text-align: center;
+}
+
+.emoji{
+    font-size: 50px;
+}

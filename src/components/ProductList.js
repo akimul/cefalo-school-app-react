@@ -1,9 +1,17 @@
 import React from 'react'
 import ProductListItem from './ProductListItem'
+import Loader from './Loader'
 import PropTypes from 'prop-types'
 
-const ProductList = ({products, onUpdateVote}) => {
-    const productListItems = products.map(product=><ProductListItem key={product.slug} product={product} onUpdateVote={onUpdateVote}/> );
+const ProductList = ({products, onUpdateVote, fetching}) => {
+    if (fetching){
+        return <Loader forLoader={true}/> 
+    }
+    if(products.length === 0){
+        return <Loader forLoader={false}/>
+    }
+    
+    const productListItems = products.map(product=><ProductListItem key={product.slug} product={product} onUpdateVote={onUpdateVote}/> )
     return (
         <div className="row">
             {productListItems}
@@ -11,4 +19,10 @@ const ProductList = ({products, onUpdateVote}) => {
     );
 };
 
-export default ProductList;
+ProductList.propTypes = {
+    products : PropTypes.array,
+    onUpdateVote: PropTypes.func,
+    fetching: PropTypes.bool
+}
+
+export default ProductList

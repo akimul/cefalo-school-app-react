@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const ProductListItem = ({product, onUpdateVote}) => {
     const {
@@ -20,12 +21,12 @@ const ProductListItem = ({product, onUpdateVote}) => {
             </p>
             <div className="my-item__text description">
                 <h2>
-                    <span class="vote" onClick={()=>onUpdateVote(product)}> </span> {votes_count}
+                    <span className="vote" onClick={()=>onUpdateVote(product)}> </span> {votes_count}
                 </h2>
                 <p className="title-text bold-font">{name}</p>
                 <p className="bold-font">{tagline}</p>
                 <p className="avatar-text">
-                    Submitted by: <img src={user_image} alt={username} class="avatar"></img>
+                    Submitted by: <img src={user_image} alt={username} className="avatar"></img>
                 </p>
             </div>
         </div>
@@ -33,4 +34,9 @@ const ProductListItem = ({product, onUpdateVote}) => {
 };
 
 
-export default ProductListItem;
+ProductListItem.propTypes = {
+    product : PropTypes.object,
+    onUpdateVote: PropTypes.func,
+}
+
+export default ProductListItem
