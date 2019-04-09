@@ -1,17 +1,40 @@
-import React from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
-const Search = () => {
-  return (
-    <div className="row">
-      <div className="col">
-        <form>
-          <div className="form-row">
-            <input className="form-control form-control-lg" type="text" placeholder="Search Places" />
-          </div>
-        </form>
+class Search extends Component {
+  state = {
+    searchTerm: ''
+  }
+  
+  render(){
+    return (
+      <div className="row">
+        <div className="col">
+          <form>
+            <div className="form-row">
+              <input 
+              className="form-control form-control-lg" 
+              type="text" 
+              placeholder="Search products"
+              value={this.state.searchTerm}
+              onChange={event => this.onInputChange(event.target.value)} />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
+
+  onInputChange(searchTerm){  
+    this.setState({
+        searchTerm
+    });
+    this.props.onSearchChange(searchTerm);
+  }
+}
+
+Search.propTypes = {
+  onSearchChange : PropTypes.func
 }
 
 export default Search

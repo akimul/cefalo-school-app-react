@@ -1,7 +1,6 @@
-import React from 'react';
+import React from 'react'
 
 const ProductListItem = ({product}) => {
-    
     const {
         name,
         tagline,
@@ -22,7 +21,7 @@ const ProductListItem = ({product}) => {
             <div className="my-item__text description">
                 <h2>
                     <span class="vote"> </span> {votes_count}
-          </h2>
+                </h2>
                 <p className="title-text bold-font">{name}</p>
                 <p className="bold-font">{tagline}</p>
                 <p className="avatar-text">

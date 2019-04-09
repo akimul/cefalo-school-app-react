@@ -1,12 +1,12 @@
-import React from 'react';
-import ProductListItem from './ProductListItem';
-import PropTypes from 'prop-types';
+import React from 'react'
+import ProductListItem from './ProductListItem'
+import PropTypes from 'prop-types'
 
 const ProductList = ({products}) => {
-    const productList = products.map(product=><ProductListItem key={product.slug} product={product}/> );
+    const productListItems = products.map(product=><ProductListItem key={product.slug} product={product}/> );
     return (
         <div className="row">
-            {productList}
+            {productListItems}
         </div>
     );
 };
