@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProductListItem = ({product}) => {
+const ProductListItem = ({product, onUpdateVote}) => {
     const {
         name,
         tagline,
@@ -20,7 +20,7 @@ const ProductListItem = ({product}) => {
             </p>
             <div className="my-item__text description">
                 <h2>
-                    <span class="vote"> </span> {votes_count}
+                    <span class="vote" onClick={()=>onUpdateVote(product)}> </span> {votes_count}
                 </h2>
                 <p className="title-text bold-font">{name}</p>
                 <p className="bold-font">{tagline}</p>
@@ -29,7 +29,7 @@ const ProductListItem = ({product}) => {
                 </p>
             </div>
         </div>
-    );
+    )
 };
 
 

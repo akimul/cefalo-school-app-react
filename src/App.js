@@ -24,7 +24,7 @@ class App extends Component {
         <Header/>
         <Search onSearchChange={term => this.onSearch(term)}/>
         <hr className="my-4"/>
-        <ProductList products={this.state.filteredProducts}/>
+        <ProductList products={this.state.filteredProducts} onUpdateVote={product=>this.updateVoteCount(product)}/>
       </div>
     )
   }
@@ -48,6 +48,16 @@ class App extends Component {
     this.setState({
       filteredProducts
     })
+  }
+
+  updateVoteCount(product)
+  {
+    product.votes_count = product.votes_count + 1
+    const index = this.state.filteredProducts.findIndex(item => item.slug === product.slug),
+    products = [...this.state.products] // important to create a copy, otherwise you'll modify state outside of setState call
+    products[index] = product;
+    products.sort((a, b) => b.votes_count - a.votes_count);
+    this.setState({products, filteredProducts: products});
   }
 }
 
