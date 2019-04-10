@@ -1,4 +1,5 @@
 import React from 'react'
+import Emoji from './Emoji'
 import PropTypes from 'prop-types'
 
 const Loader = (props) => {
@@ -6,13 +7,13 @@ const Loader = (props) => {
         <div className="not-found">
             {props.forLoader && 
                 <div>
-                    <span className="emoji" role="img" aria-label="Loading">😃</span>
+                    <Emoji symbol="😃" label="Loadming"/>
                     <h4>Please wait. Loading....</h4>
                 </div>
             }
             {!props.forLoader && 
                 <div>
-                    <span className="emoji" role="img" aria-label="No result">😥</span>
+                    <Emoji symbol="😥" label="No result"/>
                     <h4>Bummer! No results.</h4>
                 </div>
             }
