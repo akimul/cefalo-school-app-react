@@ -6,13 +6,13 @@ const Loader = (props) => {
         <div className="not-found">
             {props.forLoader && 
                 <div>
-                    <span className="emoji">😃</span>
+                    <span className="emoji" role="img" aria-label="Loading">😃</span>
                     <h4>Please wait. Loading....</h4>
                 </div>
             }
             {!props.forLoader && 
                 <div>
-                    <span className="emoji">😥</span>
+                    <span className="emoji" role="img" aria-label="No result">😥</span>
                     <h4>Bummer! No results.</h4>
                 </div>
             }

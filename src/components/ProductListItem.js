@@ -17,7 +17,7 @@ const ProductListItem = ({product, onUpdateVote}) => {
     return (
         <div className="my-item d-flex flex-column flex-md-row list-box">
             <p className="my-item__image mb-3 mb-md-0 mr-md-3 pro-image">
-                <img src={image_url} alt="Image" className="img-fluid rounded mx-auto d-block" />
+                <img src={image_url} alt={name} className="img-fluid rounded mx-auto d-block" />
             </p>
             <div className="my-item__text description">
                 <h2>
