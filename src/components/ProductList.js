@@ -13,7 +13,7 @@ const ProductList = ({products, onUpdateVote, fetching}) => {
     
     const productListItems = products.map(product=><ProductListItem key={product.slug} product={product} onUpdateVote={onUpdateVote}/> )
     return (
-        <div className="row">
+        <div className="row list-row">
             {productListItems}
         </div>
     );
