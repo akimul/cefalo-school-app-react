@@ -1,8 +1,9 @@
 import React, { Component }  from 'react'
 import Header from './components/Header'
-import Search from './components/Search'
+// import Search from './components/Search'
 import ProductList from './components/ProductList'
 import * as services from './services/getProducts'
+import { LoginModalProvider } from './components/LoginModalContext'
 
 class App extends Component {
 
@@ -10,8 +11,32 @@ class App extends Component {
     products: [],
     filteredProducts: [],
     searchTerm: '',
-    apiCallStarted: false
+    apiCallStarted: false,
+    // loginData: {
+    //   showModal: false,
+    //   toggleModal: this.toggleModal.bind(this),
+    //   authenticated: false,
+    //   toggleAuthenticated: this.toggleAuthenticated.bind(this)
+    // }
+    
   }
+
+  // toggleAuthenticated(){
+  //   this.setState({
+  //     loginData: {
+  //       authenticated: !this.state.authenticated
+  //     }
+  // })
+  // }
+
+//   toggleModal() {
+//     console.log('coming', this.state.loginData)
+//     this.setState({
+//         loginData: {
+//           showModal: !this.state.showModal
+//         }
+//     })
+// }
 
   componentDidMount() {
     this.getProducts();
@@ -26,11 +51,13 @@ class App extends Component {
   render(){
     return (
       <div className="container">
-        <Header/>
-        <Search onSearchChange={term => this.onSearch(term)} searchTerm={this.state.searchTerm}/>
-        <hr className="my-4"/>
-        <ProductList fetching={this.state.apiCallStarted} products={this.state.filteredProducts} 
-          onUpdateVote={product=>this.updateVoteCount(product)}/>
+        <LoginModalProvider>
+          <Header onSearchChange={term => this.onSearch(term)} searchTerm={this.state.searchTerm}/>
+          {/* <Search onSearchChange={term => this.onSearch(term)} searchTerm={this.state.searchTerm}/> */}
+          {/* <hr className="my-4"/> */}
+          <ProductList fetching={this.state.apiCallStarted} products={this.state.filteredProducts} 
+            onUpdateVote={product=>this.updateVoteCount(product)}/>
+        </LoginModalProvider>
       </div>
     )
   }
