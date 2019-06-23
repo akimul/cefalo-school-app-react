@@ -6,7 +6,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             <LoginModalConsumer>
@@ -15,7 +15,7 @@ class Header extends Component {
                         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                             <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                                 <ul className="navbar-nav mr-auto">
-                                    {isAuthenticated && username  && <li className="nav-item active">
+                                    {isAuthenticated && username && <li className="nav-item active">
                                         <a className="nav-link" href="#">Hello {username}</a>
                                     </li>}
                                     <li className="nav-item">
@@ -36,23 +36,26 @@ class Header extends Component {
                                     <span className="navbar-toggler-icon"></span>
                                 </button>
                             </div>
-                            { !isAuthenticated && <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                                <ul className="navbar-nav ml-auto">
-                                    <li className="nav-item">
-                                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={toggleModal}>Login</button>
-                                    </li>
-                                </ul>
-                            </div>}
-                            { isAuthenticated && <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                                <ul className="navbar-nav ml-auto">
-                                    <li className="nav-item">
-                                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={resetState}>Logout</button>
-                                    </li>
-                                </ul>
-                            </div>}
+                            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                                {!isAuthenticated &&
+                                    <ul className="navbar-nav ml-auto">
+                                        <li className="nav-item">
+                                            <button className="btn btn-outline-success my-2 my-sm-0" onClick={toggleModal}>Login</button>
+                                        </li>
+                                    </ul>
+                                }
+                                {isAuthenticated &&
+                                    <ul className="navbar-nav ml-auto">
+                                        <li className="nav-item">
+                                            <button className="btn btn-outline-success my-2 my-sm-0" onClick={resetState}>Logout</button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+
                         </nav>
                         {showModal && <Modal setAuthenticated={setAuthenticated} toggleModal={toggleModal}>
-                            
+
                         </Modal>}
                     </div>
                 )}
