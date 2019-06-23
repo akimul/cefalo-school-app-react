@@ -1,26 +1,33 @@
 import React, { createContext } from 'react';
 
+//context
 export const LoginModalContext = React.createContext({
     username: null,
     showModal: false,
     toggleModal: () => { },
     isAuthenticated: false,
-    setAuthentictaed: () => { }
+    setAuthentictaed: () => { },
+    resetState: () => {}
 });
 
+//Provider
 export class LoginModalProvider extends React.Component {
-    updateUsername = newUsername => {
-        this.setState({ username: newUsername });
-    };
+    getInitialState = () => {
+        const initialState = {
+            username: null,
+            showModal: false,
+            toggleModal: this.toggleModal.bind(this),
+            isAuthenticated: false,
+            setAuthenticated: this.setAuthenticated.bind(this),
+            resetState: this.resetState.bind(this)
+        }
+        return initialState;
+    }
+    state = this.getInitialState()
 
-    state = {
-        username: null,
-        showModal: false,
-        toggleModal: this.toggleModal.bind(this),
-        isAuthenticated: false,
-        setAuthentictaed: this.setAuthentictaed.bind(this),
-        setUserName: this.setUserName.bind(this)
-    };
+    resetState() {
+        this.setState(this.getInitialState());
+    }
 
     toggleModal() {
         this.setState({
@@ -28,17 +35,17 @@ export class LoginModalProvider extends React.Component {
         })
     }
 
-    setAuthentictaed() {
-        this.setState({
-            isAuthenticated: !this.state.setAuthentictaed
-        })
+    setAuthenticated(event) {
+        console.log('cccc')
+        if (event.target.username.value && event.target.password.value) {
+            this.setState({
+                isAuthenticated: !this.state.isAuthenticated,
+                showModal: !this.state.showModal,
+                username: event.target.username.value
+            })
+        }
     }
 
-    setUserName (name) {
-        this.setState({
-            username: name
-        })
-    }
     render() {
         return (
             <LoginModalContext.Provider value={this.state}>
@@ -48,4 +55,5 @@ export class LoginModalProvider extends React.Component {
     }
 }
 
+//Consumer
 export const LoginModalConsumer = LoginModalContext.Consumer;
