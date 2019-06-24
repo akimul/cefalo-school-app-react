@@ -16,7 +16,7 @@ class Header extends Component {
                             <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                                 <ul className="navbar-nav mr-auto">
                                     {isAuthenticated && username && <li className="nav-item active">
-                                        <a className="nav-link" href="#">Hello {username}</a>
+                                        <a className="nav-link" href="#">Welcome {username}</a>
                                     </li>}
                                     <li className="nav-item">
                                         <form className="form-inline">

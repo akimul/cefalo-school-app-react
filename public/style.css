@@ -148,3 +148,10 @@ hr {
     justify-content: center;
   }
   
+.modal-header {
+    border-bottom: none !important;
+}
+
+.modal-footer {
+    border-top: none !important;
+}

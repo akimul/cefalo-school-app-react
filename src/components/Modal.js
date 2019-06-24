@@ -31,7 +31,7 @@ class Modal extends Component {
                     <div className="modal-content">
                         <form onSubmit={this.handleSubmit}>
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Login to see products</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Login to vote</h5>
                                 <button onClick={this.props.toggleModal} type="button" className="close" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
