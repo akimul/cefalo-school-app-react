@@ -3,7 +3,7 @@ import Header from './components/Header'
 // import Search from './components/Search'
 import ProductList from './components/ProductList'
 import * as services from './services/getProducts'
-import { LoginModalProvider } from './components/LoginModalContext'
+import { LoginModalProvider } from './contexts/LoginModalContext'
 
 class App extends Component {
 
@@ -12,39 +12,15 @@ class App extends Component {
     filteredProducts: [],
     searchTerm: '',
     apiCallStarted: false,
-    // loginData: {
-    //   showModal: false,
-    //   toggleModal: this.toggleModal.bind(this),
-    //   authenticated: false,
-    //   toggleAuthenticated: this.toggleAuthenticated.bind(this)
-    // }
-    
   }
 
-  // toggleAuthenticated(){
-  //   this.setState({
-  //     loginData: {
-  //       authenticated: !this.state.authenticated
-  //     }
-  // })
-  // }
-
-//   toggleModal() {
-//     console.log('coming', this.state.loginData)
-//     this.setState({
-//         loginData: {
-//           showModal: !this.state.showModal
-//         }
-//     })
-// }
-
   componentDidMount() {
-    this.getProducts();
+    this.getProducts()
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.products !== prevState.products) {
-      this.onSearch(this.state.searchTerm);  
+      this.onSearch(this.state.searchTerm)
     }
   }
 
@@ -93,9 +69,9 @@ class App extends Component {
     product.votes_count = product.votes_count + 1
     const index = this.state.products.findIndex(item => item.slug === product.slug)
     const products = [...this.state.products] 
-    products[index] = product;
+    products[index] = product
     products.sort((a, b) => b.votes_count - a.votes_count)
-    this.setState({products});
+    this.setState({products})
   }
 }
 

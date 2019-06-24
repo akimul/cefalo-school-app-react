@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Modal from './Modal'
-import { LoginModalConsumer } from './LoginModalContext'
+import { LoginModalConsumer } from '../contexts/LoginModalContext'
 
 class Header extends Component {
     constructor(props) {
@@ -55,7 +55,6 @@ class Header extends Component {
 
                         </nav>
                         {showModal && <Modal setAuthenticated={setAuthenticated} toggleModal={toggleModal}>
-
                         </Modal>}
                     </div>
                 )}

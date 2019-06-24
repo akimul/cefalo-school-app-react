@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Modal from './Modal'
-import { LoginModalConsumer } from './LoginModalContext'
+import { LoginModalConsumer } from '../contexts/LoginModalContext'
 
 class ProductListItem extends React.Component {
     constructor(props){
