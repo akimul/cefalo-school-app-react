@@ -1,3 +1,6 @@
-import {combineReduces} from 'redux'
+import {combineReducers} from 'redux'
+import productReducer from './productReducer'
 
-export default combineReduces({})
+export default combineReducers({
+   products: productReducer
+})
