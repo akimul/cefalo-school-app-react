@@ -4,6 +4,8 @@ import Header from './components/Header'
 import ProductList from './components/ProductList'
 import * as services from './services/getProducts'
 import { LoginModalProvider } from './contexts/LoginModalContext'
+import { connect } from 'react-redux'
+import { fetchProduct, fetchViaUrl } from './actions'
 
 class App extends Component {
 
@@ -15,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getProducts()
+    this.props.fetchViaUrl()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -28,10 +30,8 @@ class App extends Component {
     return (
       <div className="container">
         <LoginModalProvider>
-          <Header onSearchChange={term => this.onSearch(term)} searchTerm={this.state.searchTerm}/>
-          {/* <Search onSearchChange={term => this.onSearch(term)} searchTerm={this.state.searchTerm}/> */}
-          {/* <hr className="my-4"/> */}
-          <ProductList fetching={this.state.apiCallStarted} products={this.state.filteredProducts} 
+          <Header/>
+          <ProductList
             onUpdateVote={product=>this.updateVoteCount(product)}/>
         </LoginModalProvider>
       </div>
@@ -39,30 +39,30 @@ class App extends Component {
   }
 
 
-  getProducts() {
-    this.setState({apiCallStarted:true})
-    services.getProducts().then(
-      products=>{
-        products.sort((a, b) => b.votes_count - a.votes_count)
-        this.setState({products, filteredProducts: products, apiCallStarted: false})
-      }
-    ).catch(e => {
-      this.setState({apiCallStarted: false})
-      console.log(e)
-    })
-  }
+  // getProducts() {
+  //   this.setState({apiCallStarted:true})
+  //   services.getProducts().then(
+  //     products=>{
+  //       products.sort((a, b) => b.votes_count - a.votes_count)
+  //       this.setState({products, filteredProducts: products, apiCallStarted: false})
+  //     }
+  //   ).catch(e => {
+  //     this.setState({apiCallStarted: false})
+  //     console.log(e)
+  //   })
+  // }
 
-  onSearch(searchterm){
-    let filteredProducts = this.state.products
-    filteredProducts = filteredProducts.filter((product) => {
-      return product.name.toLowerCase().includes(searchterm.toLowerCase()) || 
-      product.tagline.toLowerCase().includes(searchterm.toLowerCase())
-    })
-    this.setState({
-      filteredProducts, 
-      searchTerm: searchterm
-    })
-  }
+  // onSearch(searchterm){
+  //   let filteredProducts = this.state.products
+  //   filteredProducts = filteredProducts.filter((product) => {
+  //     return product.name.toLowerCase().includes(searchterm.toLowerCase()) || 
+  //     product.tagline.toLowerCase().includes(searchterm.toLowerCase())
+  //   })
+  //   this.setState({
+  //     filteredProducts, 
+  //     searchTerm: searchterm
+  //   })
+  // }
 
   updateVoteCount(product)
   {
@@ -75,4 +75,14 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = state => {
+  return {
+    products: state.filteredProducts,
+    apiCallStarted: state.apiCallStarted
+  }
+}
+export default connect(mapStateToProps, 
+  {
+    fetchProduct,
+    fetchViaUrl
+  })(App)

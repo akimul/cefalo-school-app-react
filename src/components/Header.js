@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import Modal from './Modal'
 import { LoginModalConsumer } from '../contexts/LoginModalContext'
+import { connect } from 'react-redux'
+import { searchProducts } from '../actions'
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
@@ -63,9 +62,19 @@ class Header extends Component {
         )
     }
     onInputChange(searchTerm) {
-        this.props.onSearchChange(searchTerm);
+        this.props.searchProducts(searchTerm);
     }
 }
 
-export default Header
+const mapStateToProps = state => {
+    return {
+      searchTerm: state.searchTerm,
+    }
+  }
+
+  export default connect(mapStateToProps, 
+    {
+        searchProducts
+    })(Header)
+
 

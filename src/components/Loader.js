@@ -7,7 +7,7 @@ const Loader = (props) => {
         <div className="not-found">
             {props.forLoader && 
                 <div>
-                    <Emoji symbol="😃" label="Loadming"/>
+                    <Emoji symbol="😃" label="Loading"/>
                     <h4>Please wait. Loading....</h4>
                 </div>
             }

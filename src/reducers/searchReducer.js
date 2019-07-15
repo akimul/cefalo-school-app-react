@@ -1,8 +1,8 @@
-import { FETCH_PRODUCT} from '../actions'
+import { SEARCH_PRODUCT} from '../actions'
 
 export default  (state=[], action) => {
    switch(action.type){
-      case FETCH_PRODUCT:
+      case SEARCH_PRODUCT:
          return action.payload
       default:
          return state
