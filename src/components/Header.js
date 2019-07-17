@@ -72,7 +72,7 @@ const mapStateToProps = state => {
     }
   }
 
-  export default connect(mapStateToProps, 
+export default connect(mapStateToProps, 
     {
         searchProducts
     })(Header)

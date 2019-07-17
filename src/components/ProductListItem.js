@@ -1,18 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { LoginModalConsumer } from '../contexts/LoginModalContext'
+import { connect } from 'react-redux' 
+import { updateVoteCount } from '../actions'
+import { searchProducts } from '../actions'
 
 class ProductListItem extends React.Component {
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
+
     handleClick(product, isAuthenticated, toggleModal){
-        if(isAuthenticated){
-            this.props.onUpdateVote(product)
+        if(isAuthenticated){    
+            this.props.updateVoteCount(product)            
         }else {
             toggleModal()
         }
+        // console.log('dasf', product)
+        // this.props.updateVoteCount(product)
+        // console.log('afer', product)
     }
 
     render(){
@@ -59,4 +66,15 @@ ProductListItem.propTypes = {
     onUpdateVote: PropTypes.func,
 }
 
-export default ProductListItem
+const mapStateToProps = state => {
+    return {
+      products: state.filteredProducts,
+      searchTerm: state.searchTerm
+    }
+  }
+
+export default connect(mapStateToProps, 
+    {
+      updateVoteCount,
+      searchProducts
+    })(ProductListItem)

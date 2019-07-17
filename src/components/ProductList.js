@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 class ProductList extends React.Component {
-    
     render(){
         if (this.props.apiCallStarted){
             return <Loader forLoader={true}/> 
@@ -14,7 +13,7 @@ class ProductList extends React.Component {
             return <Loader forLoader={false}/>
         }
         
-        const productListItems = this.props.products.map(product=><ProductListItem key={product.slug} product={product} onUpdateVote={this.props.onUpdateVote}/> )
+        const productListItems = this.props.products.map(product=><ProductListItem key={product.slug} product={product} /> )
         return (
             <div className="row list-row">
                 {productListItems}
@@ -23,11 +22,11 @@ class ProductList extends React.Component {
     }
 }
 
-ProductList.propTypes = {
-    products : PropTypes.array,
-    onUpdateVote: PropTypes.func,
-    fetching: PropTypes.bool
-}
+// ProductList.propTypes = {
+//     products : PropTypes.array,
+//     onUpdateVote: PropTypes.func,
+//     fetching: PropTypes.bool
+// }
 
 const mapStateToProps = state => {
     return {
@@ -35,4 +34,5 @@ const mapStateToProps = state => {
       apiCallStarted: state.apiCallStarted
     }
   }
-  export default connect(mapStateToProps)(ProductList)
+
+export default connect(mapStateToProps)(ProductList)

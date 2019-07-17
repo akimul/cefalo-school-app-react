@@ -45,14 +45,36 @@ export const fetchViaUrl = () => {
   }
 }
 
+
+export const updateVoteCount = product => (dispatch, getState)=> {
+   product.votes_count = product.votes_count + 1
+   let index = getState().products.findIndex(item => item.slug === product.slug)
+   let products = Object.assign([],getState().products)
+   products[index] = product
+   products.sort((a, b) => b.votes_count - a.votes_count)
+   dispatch({
+      type: FETCH_PRODUCT,
+      payload: products
+  });
+   if(getState().searchTerm){
+      dispatch(searchProducts(getState().searchTerm))
+   } else {
+      dispatch({
+         type: SEARCH_PRODUCT,
+         payload: products
+     })
+   }
+}
+
 export const searchProducts = searchterm => (dispatch, getState) => {
    const filteredProducts = getState().products.filter((product) => {
       return product.name.toLowerCase().includes(searchterm.toLowerCase()) || 
       product.tagline.toLowerCase().includes(searchterm.toLowerCase())
     })
+    const searchedProduct = Object.assign([], filteredProducts)
     dispatch({
         type: SEARCH_PRODUCT,
-        payload: filteredProducts
+        payload: searchedProduct
     });
     dispatch({
       type: SEARCH_TERM,
