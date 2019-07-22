@@ -12,12 +12,6 @@ class App extends Component {
     this.props.fetchViaUrl()
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.products !== prevState.products) {
-  //     this.onSearch(this.state.searchTerm)
-  //   }
-  // }
-
   render(){
     return (
       <div className="container">
@@ -28,17 +22,6 @@ class App extends Component {
       </div>
     )
   }
-
-
-  // updateVoteCount(product)
-  // {
-  //   product.votes_count = product.votes_count + 1
-  //   const index = this.state.products.findIndex(item => item.slug === product.slug)
-  //   const products = [...this.state.products] 
-  //   products[index] = product
-  //   products.sort((a, b) => b.votes_count - a.votes_count)
-  //   this.setState({products})
-  // }
 }
 
 const mapStateToProps = state => {
