@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import Modal from './Modal'
-import { LoginModalConsumer } from '../contexts/LoginModalContext'
 import { connect } from 'react-redux'
-import { searchProducts } from '../actions'
+import { searchProducts, toggleModal, setAuthenticated, resetState } from '../actions'
 
 class Header extends Component {
+    
 
     render() {
+        const {
+            isAuthenticated,
+            username,
+            toggleModal,
+            setAuthenticated,
+            resetState,
+            showModal
+          } = this.props
         return (
-            <LoginModalConsumer>
-                {({ username, showModal, toggleModal, isAuthenticated, setAuthenticated, resetState }) => (
+            
+                
                     <div>
                         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                             <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
@@ -56,10 +64,7 @@ class Header extends Component {
                         {showModal && <Modal setAuthenticated={setAuthenticated} toggleModal={toggleModal}>
                         </Modal>}
                     </div>
-                )}
-            </LoginModalConsumer>
-
-        )
+                )
     }
     onInputChange(searchTerm) {
         this.props.searchProducts(searchTerm);
@@ -68,13 +73,19 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-      searchTerm: state.searchTerm,
+        showModal: state.showModal,
+        isAuthenticated: state.authenticated,
+        username: state.username,
+        searchTerm: state.searchTerm,
     }
   }
 
 export default connect(mapStateToProps, 
     {
-        searchProducts
+        searchProducts,
+        toggleModal,
+        setAuthenticated,
+        resetState
     })(Header)
 
 

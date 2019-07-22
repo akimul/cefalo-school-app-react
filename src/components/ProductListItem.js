@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { LoginModalConsumer } from '../contexts/LoginModalContext'
 import { connect } from 'react-redux' 
-import { updateVoteCount } from '../actions'
-import { searchProducts } from '../actions'
+import { searchProducts, toggleModal, updateVoteCount } from '../actions'
 
 class ProductListItem extends React.Component {
     constructor(props){
@@ -17,9 +15,6 @@ class ProductListItem extends React.Component {
         }else {
             toggleModal()
         }
-        // console.log('dasf', product)
-        // this.props.updateVoteCount(product)
-        // console.log('afer', product)
     }
 
     render(){
@@ -37,14 +32,14 @@ class ProductListItem extends React.Component {
           } = this.props.product
           
         return (
-            <LoginModalConsumer>
-                {({ showModal, toggleModal, isAuthenticated})=>(<div className="my-item d-flex flex-column flex-md-row list-box">
+            
+                <div className="my-item d-flex flex-column flex-md-row list-box">
                 <p className="my-item__image mb-3 mb-md-0 mr-md-3 pro-image">
                     <img src={image_url} alt={name} className="img-fluid rounded mx-auto d-block" />
                 </p>
                 <div className="my-item__text description">
                     <h2>
-                        <span className="vote" onClick={()=>this.handleClick(this.props.product, isAuthenticated, toggleModal)}> </span> {votes_count}
+                        <span className="vote" onClick={()=>this.handleClick(this.props.product, this.props.isAuthenticated, this.props.toggleModal)}> </span> {votes_count}
                     </h2>
                     <p className="title-text bold-font">{name}</p>
                     <p className="bold-font">{tagline}</p>
@@ -52,10 +47,10 @@ class ProductListItem extends React.Component {
                         Submitted by: <img src={user_image} alt={username} className="avatar"></img>
                     </p>
                 </div>
-            </div>)}
-            </LoginModalConsumer>
+            </div>)
             
-        )
+            
+        
     }
     
 };
@@ -69,12 +64,14 @@ ProductListItem.propTypes = {
 const mapStateToProps = state => {
     return {
       products: state.filteredProducts,
-      searchTerm: state.searchTerm
+      searchTerm: state.searchTerm,
+      isAuthenticated: state.authenticated,
     }
   }
 
 export default connect(mapStateToProps, 
     {
       updateVoteCount,
-      searchProducts
+      searchProducts,
+      toggleModal
     })(ProductListItem)

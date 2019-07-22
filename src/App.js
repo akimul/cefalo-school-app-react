@@ -1,9 +1,6 @@
 import React, { Component }  from 'react'
 import Header from './components/Header'
-// import Search from './components/Search'
 import ProductList from './components/ProductList'
-import * as services from './services/getProducts'
-import { LoginModalProvider } from './contexts/LoginModalContext'
 import { connect } from 'react-redux'
 import { fetchProduct, fetchViaUrl } from './actions'
 
@@ -14,11 +11,9 @@ class App extends Component {
 
   render(){
     return (
-      <div className="container">
-        <LoginModalProvider>
+      <div className="container">   
           <Header/>
           <ProductList/>
-        </LoginModalProvider>
       </div>
     )
   }
