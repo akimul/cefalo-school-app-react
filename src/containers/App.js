@@ -1,8 +1,8 @@
 import React, { Component }  from 'react'
-import Header from './components/Header'
-import ProductList from './components/ProductList'
+import Header from './Header'
+import ProductList from '../components/ProductList'
 import { connect } from 'react-redux'
-import { fetchProduct, fetchViaUrl } from './actions'
+import { fetchProduct, fetchViaUrl } from '../actions'
 
 class App extends Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="container">   
           <Header/>
-          <ProductList/>
+          <ProductList products={this.props.products} apiCallStarted={this.props.apiCallStarted} />
       </div>
     )
   }
@@ -21,8 +21,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    // products: state.filteredProducts,
-    // apiCallStarted: state.apiCallStarted
+      products: state.filteredProducts,
+      apiCallStarted: state.apiCallStarted
   }
 }
 export default connect(mapStateToProps, 

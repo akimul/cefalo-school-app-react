@@ -1,8 +1,8 @@
 import React from 'react'
-import ProductListItem from './ProductListItem'
+import ProductListItem from '../containers/ProductListItem'
 import Loader from './Loader'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+//import { connect } from 'react-redux'
 
 class ProductList extends React.Component {
     render(){
@@ -22,17 +22,18 @@ class ProductList extends React.Component {
     }
 }
 
-// ProductList.propTypes = {
-//     products : PropTypes.array,
-//     onUpdateVote: PropTypes.func,
-//     fetching: PropTypes.bool
-// }
+ProductList.propTypes = {
+    products : PropTypes.array,
+    apiCallStarted: PropTypes.bool
+}
 
-const mapStateToProps = state => {
-    return {
-      products: state.filteredProducts,
-      apiCallStarted: state.apiCallStarted
-    }
-  }
+// const mapStateToProps = state => {
+//     return {
+//       products: state.filteredProducts,
+//       apiCallStarted: state.apiCallStarted
+//     }
+//   }
 
-export default connect(mapStateToProps)(ProductList)
+//export default connect(mapStateToProps)(ProductList)
+
+export default ProductList

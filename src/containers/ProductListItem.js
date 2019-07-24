@@ -31,9 +31,8 @@ class ProductListItem extends React.Component {
             }
           } = this.props.product
           
-        return (
-            
-                <div className="my-item d-flex flex-column flex-md-row list-box">
+        return (          
+            <div className="my-item d-flex flex-column flex-md-row list-box">
                 <p className="my-item__image mb-3 mb-md-0 mr-md-3 pro-image">
                     <img src={image_url} alt={name} className="img-fluid rounded mx-auto d-block" />
                 </p>
@@ -47,18 +46,15 @@ class ProductListItem extends React.Component {
                         Submitted by: <img src={user_image} alt={username} className="avatar"></img>
                     </p>
                 </div>
-            </div>)
-            
-            
-        
+            </div>
+        ) 
     }
-    
 };
 
 
 ProductListItem.propTypes = {
     product : PropTypes.object,
-    onUpdateVote: PropTypes.func,
+    updateVoteCount: PropTypes.func,
 }
 
 const mapStateToProps = state => {
